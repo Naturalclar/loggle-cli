@@ -147,6 +147,7 @@ export class Loggle {
     }
 
     await startButton.click();
+    console.log("Success");
   }
 
   async stopProject(projectId: string) {
@@ -163,6 +164,7 @@ export class Loggle {
       throw new Error("start button not found");
     }
     await stopButton.click();
+    console.log("Success");
   }
 
   async close() {
