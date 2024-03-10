@@ -1,0 +1,19 @@
+{
+  "name": "loggle-cli",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "./bin/loggle"
+  },
+  "bin": {
+    "loggle": "./bin/loggle"
+  },
+  "keywords": [],
+  "author": "Jesse Katsumata (Naturalclar)",
+  "license": "ISC",
+  "dependencies": {
+    "minimist": "^1.2.8",
+    "playwright": "^1.42.1"
+  }
+}
