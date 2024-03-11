@@ -29,10 +29,13 @@ Login to loggle
 List all projects and status
 
 `./bin/loggle info [projectId]`
-Show status of given project
+Show project details
 
 `./bin/loggle start [projectId]`
-Start the given project
+Start tracking time for a project
 
 `./bin/loggle stop [projectId]`
-Stop the given project
+Stop tracking time for a project
+
+`./bin/loggle help`
+Show help message
