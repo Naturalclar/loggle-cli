@@ -39,3 +39,6 @@ Stop tracking time for a project
 
 `./bin/loggle help`
 Show help message
+
+`./bin/loggle whoami`
+Show authorized user name
