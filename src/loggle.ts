@@ -153,11 +153,11 @@ export class Loggle {
   }
 
   async startProject(projectId: string) {
-    const { state } = await this.getProjectInfo(projectId);
+    const { projectName, state } = await this.getProjectInfo(projectId);
 
     if (state === "稼働中") {
       console.log("already started");
-      return;
+      return { success: false };
     }
     const project = await this.getProjectDom(projectId);
     const startButton = await project.$("button");
@@ -168,14 +168,19 @@ export class Loggle {
 
     await startButton.click();
     console.log("Success");
+
+    return {
+      success: true,
+      projectName
+    }
   }
 
   async stopProject(projectId: string) {
-    const { state } = await this.getProjectInfo(projectId);
+    const { projectName, state } = await this.getProjectInfo(projectId);
 
     if (state === "非稼働") {
       console.log("already stopped");
-      return;
+      return { success: false };
     }
     const project = await this.getProjectDom(projectId);
     const stopButton = await project.$("button");
@@ -185,6 +190,11 @@ export class Loggle {
     }
     await stopButton.click();
     console.log("Success");
+    
+    return {
+      success:true,
+      projectName
+    }
   }
 
   async close() {
