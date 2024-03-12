@@ -8,7 +8,7 @@ export async function main() {
 
   const args = minimist(argv);
 
-  type Options = "auth" | "ls" | "help" | "info" | "start" | "stop";
+  type Options = "auth" | "ls" | "help" | "info" | "start" | "stop" | "whoami";
 
   const option: Options = args._[0];
 
@@ -50,6 +50,17 @@ export async function main() {
   if (option === "stop") {
     const projectId = args._[1];
     await loggle.stopProject(projectId);
+    await loggle.close();
+    process.exit(0);
+  }
+
+  if (option === "whoami") {
+    try {
+      const name = await loggle.getProfileName();
+      console.log(name);
+    } catch (error) {
+      console.log('not authorized');
+    }
     await loggle.close();
     process.exit(0);
   }

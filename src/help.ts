@@ -6,5 +6,6 @@ export function help() {
   console.info("  info  [projectId]  Show project details");
   console.info("  start [projectId]  Start tracking time for a project");
   console.info("  stop  [projectId]  Stop tracking time for a project");
+  console.info("  whoami             Show your profile name");
   console.info("  help               Show this help message");
 }

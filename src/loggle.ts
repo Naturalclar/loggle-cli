@@ -1,4 +1,4 @@
-import { Browser, BrowserContext, Page, chromium } from "playwright";
+import { Browser, BrowserContext, ElementHandle, Page, chromium } from "playwright";
 import fs from "node:fs";
 import { promptAuth } from "./auth/prompt";
 import { checkRemember, fillEmail, fillPassword } from "./auth/login";
@@ -106,6 +106,26 @@ export class Loggle {
 
       console.log(`${projectId} | ${projectName} | ${state}`);
     }
+  }
+
+  async getProfileName() {
+    if (!this.isReady) {
+      throw new Error("not ready");
+    }
+    const authState = await this.getAuthState();
+
+    if (authState === "unauthorized") {
+      throw new Error("not authorized");
+    }
+
+    await this.page.goto("https://loggle.jp/mypage");
+
+    const profile = await this.page.locator('[id="name"]');
+    if (!profile) {
+      throw new Error("profile not found");
+    }
+
+    return await profile.inputValue()
   }
 
   async getProjectDom(projectId: string) {
