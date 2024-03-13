@@ -20,7 +20,6 @@ export const createMessage = async (token: string, channelId: string, message: s
 export const recordStart = async (projectName: string) => {
     const token = process.env.SLACK_API_TOKEN
     const channelId = process.env.SLACK_CHANNEL_ID
-    console.log('token', token)
     const message = `稼働開始: ${projectName}`
     await createMessage(token, channelId, message)
 }
