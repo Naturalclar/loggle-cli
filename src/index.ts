@@ -2,6 +2,7 @@
 import { help } from "./help";
 import { Loggle } from "./loggle";
 import minimist from "minimist";
+import { recordStart, recordStop } from "./slack/createMessage";
 
 export async function main() {
   const argv = process.argv.slice(2);
@@ -42,14 +43,20 @@ export async function main() {
 
   if (option === "start") {
     const projectId = args._[1];
-    await loggle.startProject(projectId);
+    const res = await loggle.startProject(projectId);
+    if (res.success) {
+      recordStart(res.projectName);
+    }
     await loggle.close();
     process.exit(0);
   }
 
   if (option === "stop") {
     const projectId = args._[1];
-    await loggle.stopProject(projectId);
+    const res = await loggle.stopProject(projectId);
+    if (res.success) {
+      recordStop(res.projectName);
+    }
     await loggle.close();
     process.exit(0);
   }
