@@ -1,4 +1,4 @@
-import { Browser, BrowserContext, ElementHandle, Page, chromium } from "playwright";
+import { Browser, BrowserContext, Page, chromium } from "playwright";
 import fs from "node:fs";
 import { promptAuth } from "./auth/prompt";
 import { checkRemember, fillEmail, fillPassword } from "./auth/login";
@@ -125,7 +125,7 @@ export class Loggle {
       throw new Error("profile not found");
     }
 
-    return await profile.inputValue()
+    return await profile.inputValue();
   }
 
   async getProjectDom(projectId: string) {
