@@ -78,7 +78,10 @@ export const Invoice = React.memo<Props>(
                 padding: 0;
                 margin: 0;
                 }
-          table {
+              html {
+                  -webkit-print-color-adjust: exact;
+                }
+              table {
                   border-collapse: collapse;
                   border-spacing: 0px;
                 }
