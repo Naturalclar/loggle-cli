@@ -93,19 +93,44 @@ export class Loggle {
       throw new Error("not authorized");
     }
 
+    console.log("ProjectID | ProjectName | State");
+    // get each fom that has wire:key
+
+    const projectInfos = await this.getAllProjectInfos();
+
+    projectInfos.forEach((project) => {
+      console.log(
+        `${project.projectId} | ${project.projectName} | ${project.state}`
+      );
+    });
+  }
+
+  async getAllProjectInfos() {
+    if (!this.isReady) {
+      throw new Error("not ready");
+    }
+    const authState = await this.getAuthState();
+
+    if (authState === "unauthorized") {
+      throw new Error("not authorized");
+    }
+
     // get each fom that has wire:key
     const projects = await this.page.$$("[wire\\:key]");
 
-    console.log("ProjectID | ProjectName | State");
+    const projectInfos = [];
     for (const project of projects) {
       const projectId = await project.getAttribute("wire:key");
 
       const rows = (await project.innerText()).split("\n");
       const projectName = rows.at(0);
+      const rate = rows.at(4);
+      const time = rows.at(7);
       const state = rows.at(-1);
 
-      console.log(`${projectId} | ${projectName} | ${state}`);
+      projectInfos.push({ projectId, projectName, rate, time, state });
     }
+    return projectInfos;
   }
 
   async getProfileName() {
@@ -142,9 +167,11 @@ export class Loggle {
     const project = await this.getProjectDom(projectId);
     const rows = (await project.innerText()).split("\n");
     const projectName = rows.at(0);
+    const rate = rows.at(4);
+    const time = rows.at(7);
     const state = rows.at(-1);
 
-    return { projectName, state };
+    return { projectName, rate, time, state };
   }
 
   async showProjectInfo(projectId: string) {
