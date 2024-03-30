@@ -17,7 +17,7 @@ import {
 } from "./types";
 
 const getPriceDetail = (data: InvoiceData[]): PriceDetailType => {
-  return data.reduce(
+  const detail = data.reduce(
     (acc, cur) => ({
       tax10:
         cur.taxRate === 10
@@ -55,6 +55,15 @@ const getPriceDetail = (data: InvoiceData[]): PriceDetailType => {
       total: 0,
     }
   );
+  return {
+    tax10: Math.floor(detail.tax10),
+    tax8: Math.floor(detail.tax8),
+    tax10Total: Math.floor(detail.tax10Total),
+    tax8Total: Math.floor(detail.tax8Total),
+    totalWithoutTax: detail.totalWithoutTax,
+    taxTotal: Math.floor(detail.taxTotal),
+    total: Math.floor(detail.total),
+  };
 };
 
 type Props = {
