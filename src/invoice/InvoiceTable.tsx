@@ -1,10 +1,11 @@
 import * as React from "react";
 import { InvoiceData } from "./types";
 type Props = {
+  issueDate: string;
   data: InvoiceData[];
 };
 
-export const InvoiceTable = React.memo<Props>(({ data }) => {
+export const InvoiceTable = React.memo<Props>(({ issueDate, data }) => {
   return (
     <table style={styles.container}>
       <tr>
@@ -18,7 +19,7 @@ export const InvoiceTable = React.memo<Props>(({ data }) => {
       </tr>
       {data.map((d, i) => (
         <tr key={i}>
-          <td style={styles.dataCenter}>{d.date}</td>
+          <td style={styles.dataCenter}>{issueDate}</td>
           <td style={styles.dataLeft}>{d.name}</td>
           <td style={styles.data}>{d.quantity}</td>
           <td style={styles.data}>{d.unit}</td>
@@ -78,7 +79,7 @@ const styles = {
     borderWidth: 1,
     borderStyle: "solid",
     borderColor: "black",
-    backgroundColor: "gray",
+    backgroundColor: "#dddddd",
     padding: 4,
     margin: 0,
   },

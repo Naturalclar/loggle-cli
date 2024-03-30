@@ -2,21 +2,22 @@ import * as playwright from "playwright";
 import * as ReactDOMServer from "react-dom/server";
 import * as React from "react";
 import { Invoice } from "./Invoice";
-import {
-  mockBankDetail,
-  mockBillingInfo,
-  mockData,
-  mockRecipient,
-} from "./mockData";
+import { mockData } from "./mockData";
+import dayjs from "dayjs";
+import * as config from "../../config.json";
 
 (async () => {
+  const issueDate = dayjs().endOf("month").format("YYYY-MM-DD");
+
   // Render the React component to an HTML string
   const htmlContent = ReactDOMServer.renderToString(
     React.createElement(Invoice, {
+      issueDate,
       data: mockData,
-      bankDetail: mockBankDetail,
-      recipientInfo: mockRecipient,
-      billingInfo: mockBillingInfo,
+      bankDetail: config.bankDetail,
+      recipientInfo: config.recipientInfo,
+      billingInfo: config.billingInfo,
+      invoiceInfo: config.invoiceInfo,
     })
   );
 

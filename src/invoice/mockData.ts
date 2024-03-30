@@ -2,6 +2,7 @@ import {
   BankDetailType,
   BillingInfoType,
   InvoiceData,
+  InvoiceInfoType,
   RecipientType,
 } from "./types";
 export const mockBillingInfo: BillingInfoType = {
@@ -16,7 +17,6 @@ export const mockRecipient: RecipientType = {
 };
 export const mockData: InvoiceData[] = [
   {
-    date: "2021-01-01",
     name: "案件Alpha",
     quantity: 50,
     unit: "時間",
@@ -24,7 +24,6 @@ export const mockData: InvoiceData[] = [
     taxRate: 10,
   },
   {
-    date: "2021-01-01",
     name: "案件Beta",
     quantity: 30,
     unit: "時間",
@@ -39,4 +38,8 @@ export const mockBankDetail: BankDetailType = {
   accountNumber: "1234567",
   accountName: "ヤマダタロウ",
   accountNameKana: "ヤマダタロウ",
+};
+export const mockInvoiceInfo: InvoiceInfoType = {
+  publishNumber: "30",
+  invoiceNumber: "T1234567890",
 };
