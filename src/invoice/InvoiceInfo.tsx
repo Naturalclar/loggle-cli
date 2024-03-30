@@ -5,10 +5,10 @@ type Props = {
   date: string;
   // 請求番号
   // ex: 1000
-  publishNumber: number;
+  publishNumber: string;
   // 登録番号
   // ex: T1234567890
-  invoiceNumber: string;
+  invoiceNumber?: string;
 };
 export const InvoiceInfo = memo<Props>(
   ({ date, publishNumber, invoiceNumber }) => {
@@ -22,10 +22,12 @@ export const InvoiceInfo = memo<Props>(
           <p>請求番号：</p>
           <p>{publishNumber}</p>
         </div>
-        <div style={styles.row}>
-          <p>登録番号：</p>
-          <p>{invoiceNumber}</p>
-        </div>
+        {invoiceNumber ? (
+          <div style={styles.row}>
+            <p>登録番号：</p>
+            <p>{invoiceNumber}</p>
+          </div>
+        ) : null}
       </div>
     );
   }

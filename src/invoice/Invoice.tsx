@@ -13,6 +13,7 @@ import {
   InvoiceData,
   PriceDetailType,
   RecipientType,
+  InvoiceInfoType,
 } from "./types";
 
 const getPriceDetail = (data: InvoiceData[]): PriceDetailType => {
@@ -57,13 +58,25 @@ const getPriceDetail = (data: InvoiceData[]): PriceDetailType => {
 };
 
 type Props = {
+  /**
+   * format: YYYY-MM-DD
+   **/
+  issueDate: string;
   data: InvoiceData[];
   bankDetail: BankDetailType;
   billingInfo: BillingInfoType;
   recipientInfo: RecipientType;
+  invoiceInfo: InvoiceInfoType;
 };
 export const Invoice = React.memo<Props>(
-  ({ data, bankDetail, billingInfo, recipientInfo }) => {
+  ({
+    issueDate,
+    data,
+    bankDetail,
+    billingInfo,
+    recipientInfo,
+    invoiceInfo,
+  }) => {
     const priceDetail = getPriceDetail(data);
 
     return (
@@ -92,9 +105,9 @@ export const Invoice = React.memo<Props>(
           <h1 style={styles.title}>請求書</h1>
           <div style={styles.rowEnd}>
             <InvoiceInfo
-              date="2021-01-01"
-              publishNumber={1000}
-              invoiceNumber="T1234567890"
+              date={issueDate}
+              publishNumber={invoiceInfo.publishNumber}
+              invoiceNumber={invoiceInfo.invoiceNumber}
             />
           </div>
           <div style={styles.row}>
@@ -103,7 +116,7 @@ export const Invoice = React.memo<Props>(
           </div>
           <p>下記の通り、ご請求申し上げます。</p>
           <BillingPrice price={priceDetail.total} />
-          <InvoiceTable data={data} />
+          <InvoiceTable issueDate={issueDate} data={data} />
           <div style={styles.rowBetween}>
             <TaxDetail detail={priceDetail} />
             <PriceDetail detail={priceDetail} />

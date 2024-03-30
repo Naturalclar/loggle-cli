@@ -5,7 +5,8 @@
   "main": "src/index.ts",
   "scripts": {
     "start": "./bin/loggle",
-    "format": "biome format"
+    "format": "biome format",
+    "pdf": "bun run ./src/invoice/pdf.tsx"
   },
   "bin": {
     "loggle": "./bin/loggle"
@@ -17,7 +18,8 @@
     "minimist": "^1.2.8",
     "playwright": "^1.42.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "dayjs": "^1.11.10"
   },
   "devDependencies": {
     "@types/node": "^20.11.30",

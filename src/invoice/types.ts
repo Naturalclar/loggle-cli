@@ -1,5 +1,4 @@
 export type InvoiceData = {
-  date: string;
   name: string;
   quantity: number;
   unit: string;
@@ -43,4 +42,14 @@ export type BankDetailType = {
   accountNumber: string;
   accountName: string;
   accountNameKana: string;
+};
+export type InvoiceInfoType = {
+  /**
+   * インボイス登録番号
+   */
+  invoiceNumber?: string;
+  /**
+   * 請求番号
+   */
+  publishNumber: string;
 };

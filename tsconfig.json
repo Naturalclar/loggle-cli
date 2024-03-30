@@ -4,6 +4,8 @@
     "strict": true,
     "lib": ["ES2023", "dom"],
     "target": "ES5",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   }
 }
