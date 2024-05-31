@@ -100,7 +100,7 @@ export class Loggle {
 
     projectInfos.forEach((project) => {
       console.log(
-        `${project.projectId} | ${project.projectName} | ${project.state}`
+        `${project.projectId} | ${project.projectName} | ${project.state}`,
       );
     });
   }
@@ -125,7 +125,7 @@ export class Loggle {
       const rows = (await project.innerText()).split("\n");
       const projectName = rows.at(0);
       const rate = rows.at(4);
-      const time = rows.at(7);
+      const time = rows.at(6);
       const state = rows.at(-1);
 
       projectInfos.push({ projectId, projectName, rate, time, state });

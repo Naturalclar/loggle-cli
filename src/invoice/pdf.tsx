@@ -2,7 +2,6 @@ import * as playwright from "playwright";
 import * as ReactDOMServer from "react-dom/server";
 import * as React from "react";
 import { Invoice } from "./Invoice";
-import { mockData } from "./mockData";
 import dayjs from "dayjs";
 import * as config from "../../config.json";
 import { Loggle } from "../loggle";
@@ -37,7 +36,7 @@ import { getTotalAmount } from "../utils/amount";
       recipientInfo: config.recipientInfo,
       billingInfo: config.billingInfo,
       invoiceInfo: config.invoiceInfo,
-    })
+    }),
   );
 
   // Use Playwright to launch a browser and create a PDF
